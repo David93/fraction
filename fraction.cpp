@@ -64,11 +64,36 @@ Fraction Fraction::operator*(const Fraction& b){
 Fraction Fraction::operator/(const Fraction& b){
 	return (*this)*(Fraction(b.dem,b.num));
 }
+bool Fraction::operator<(const Fraction& b){
+	int n1=(this->num)*(b.dem);
+	int n2=(this->dem)*(b.num);
+	if(n1<n2)
+		return true;
+	return false;
+}
+bool Fraction::operator>(const Fraction& b){
+	int n1=(this->num)*(b.dem);
+	int n2=(this->dem)*(b.num);
+	if(n1>n2)
+		return true;
+	return false;
+}
+bool Fraction::operator==(const Fraction& b){
+	int n1=(this->num)*(b.dem);
+	int n2=(this->dem)*(b.num);
+	int d=(this->dem)*(b.dem);
+	if(n1==n2)
+		return true;
+	return false;
+}
+bool Fraction::operator!=(const Fraction& b){
+	return !(*this==b);
+}
 int main(){
 	cout<<"Fraction Testbench"<<endl;
-	Fraction a(1,4);
+	Fraction a(1,1);
 	Fraction b(1,2);
-	Fraction t=a/b;
-	t.display();
+	cout<<(a<b)<<(a>b)<<(a==b)<<(a!=b)<<endl;
+	//t.display();
 	return 0;
 }
