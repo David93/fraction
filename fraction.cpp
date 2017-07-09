@@ -43,10 +43,13 @@ class Fraction{
 		bool operator<(const Fraction& b);
 		bool operator==(const Fraction& b);
 		bool operator!=(const Fraction& b);
+
 		//reduce/simplify func
 		void reduce();
-		//display function
-		void display(){cout<<num<<"/"<<dem<<endl;}	
+		//display functions
+		void display(){cout<<num<<"/"<<dem<<endl;}
+		//overload for <<, declared as friend to use private elems	
+		friend ostream& operator<<(ostream& os, const Fraction& f);  
 };
 void Fraction::reduce(){
 	int h=HCF(abs(num),abs(dem));
@@ -104,12 +107,16 @@ bool Fraction::operator==(const Fraction& b){
 bool Fraction::operator!=(const Fraction& b){
 	return !(*this==b);
 }
+//<< overload body
+ostream& operator<<(ostream& os, const Fraction& f)  
+{  
+    os<<f.num<<'/'<<f.dem;  
+    return os;  
+}  
 int main(){
 	cout<<"Fraction Testbench"<<endl;
 	Fraction a(3,4);
-	Fraction b=a+1.25;
-	b.display();
-	//Fraction(1.2255);
-	cout<<(a==1.5)<<endl;
+	Fraction b=a*1.25;
+	cout<<b<<endl;
 	return 0;
 }
