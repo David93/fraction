@@ -99,7 +99,6 @@ bool Fraction::operator>(const Fraction& b){
 bool Fraction::operator==(const Fraction& b){
 	int n1=(this->num)*(b.dem);
 	int n2=(this->dem)*(b.num);
-	int d=(this->dem)*(b.dem);
 	if(n1==n2)
 		return true;
 	return false;
