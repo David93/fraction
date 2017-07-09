@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 //HCF func
 int HCF(int a, int b){
@@ -17,8 +18,22 @@ class Fraction{
 	private:
 		int num, dem;
 	public:
-		//constructor
+		//constructors
 		Fraction(int n, int d):num(n),dem(d){reduce();}
+		Fraction(int n):num(n),dem(1){}
+		Fraction(double n){
+			string s=to_string(n);
+			int dot=s.find(".");
+			int a=stoi(s.substr(0,dot));
+			int b=stoi(s.substr(dot+1,s.size()-dot));
+			while(b%10==0)
+				b/=10;
+			dem=1;
+			num=stoi(to_string(a)+to_string(b));
+			while(b)
+			{	b/=10;dem*=10;}
+			reduce();
+		}
 		//overloaded ops
 		Fraction operator+(const Fraction& b);
 		Fraction operator-(const Fraction& b);
@@ -91,9 +106,10 @@ bool Fraction::operator!=(const Fraction& b){
 }
 int main(){
 	cout<<"Fraction Testbench"<<endl;
-	Fraction a(1,1);
-	Fraction b(1,2);
-	cout<<(a<b)<<(a>b)<<(a==b)<<(a!=b)<<endl;
-	//t.display();
+	Fraction a(3,4);
+	Fraction b=a+1.25;
+	b.display();
+	//Fraction(1.2255);
+	cout<<(a==1.5)<<endl;
 	return 0;
 }
