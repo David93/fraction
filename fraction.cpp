@@ -133,8 +133,8 @@ ostream& operator<<(ostream& os, const Fraction& f)
 int main(){
 	cout<<"Fraction Testbench"<<endl;
 	Fraction a(4,25);
-	Fraction b=a^1.5;
+	Fraction b(1,2);
 	cout<<b<<endl;
-	cout<<!a<<endl;
+	cout<<!(a^b)<<endl;
 	return 0;
 }
